@@ -1,39 +1,62 @@
-/* Service worker minimal — cache la coquille de l'app pour le hors-ligne */
-const CACHE = "diablerie-v1";
-const ASSETS = [
-  "./",
-  "./index.html",
-  "./manifest.webmanifest"
-];
+/* Service worker — Diablerie
+   Stratégie :
+   - HTML (navigation)  -> "network-first" : on tente le réseau, on tombe sur le cache hors-ligne.
+   - autres fichiers     -> "cache-first" puis mise à jour en arrière-plan.
+   IMPORTANT : à chaque déploiement, change le numéro de version ci-dessous
+   (ex : diablerie-v2, v3...) pour forcer la mise à jour chez tout le monde. */
+const VERSION = "diablerie-v2";
+const ASSETS = ["./", "./index.html", "./manifest.webmanifest"];
 
 self.addEventListener("install", (e) => {
-  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)));
-  self.skipWaiting();
+  e.waitUntil(caches.open(VERSION).then((c) => c.addAll(ASSETS)));
+  self.skipWaiting(); // le nouveau worker prend la main sans attendre
 });
 
 self.addEventListener("activate", (e) => {
   e.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))
-    )
+    caches.keys()
+      .then((keys) => Promise.all(keys.filter((k) => k !== VERSION).map((k) => caches.delete(k))))
+      .then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
 self.addEventListener("fetch", (e) => {
-  if (e.request.method !== "GET") return;
+  const req = e.request;
+  if (req.method !== "GET") return;
+
+  const isHTML = req.mode === "navigate" ||
+                 (req.headers.get("accept") || "").includes("text/html");
+
+  if (isHTML) {
+    // network-first : on récupère toujours la dernière page si possible
+    e.respondWith(
+      fetch(req)
+        .then((resp) => {
+          const copy = resp.clone();
+          caches.open(VERSION).then((c) => c.put(req, copy)).catch(() => {});
+          return resp;
+        })
+        .catch(() => caches.match(req).then((c) => c || caches.match("./index.html")))
+    );
+    return;
+  }
+
+  // cache-first pour le reste, avec rafraîchissement en arrière-plan
   e.respondWith(
-    caches.match(e.request).then((cached) => {
-      return (
-        cached ||
-        fetch(e.request)
-          .then((resp) => {
-            const copy = resp.clone();
-            caches.open(CACHE).then((c) => c.put(e.request, copy)).catch(() => {});
-            return resp;
-          })
-          .catch(() => cached)
-      );
+    caches.match(req).then((cached) => {
+      const network = fetch(req)
+        .then((resp) => {
+          const copy = resp.clone();
+          caches.open(VERSION).then((c) => c.put(req, copy)).catch(() => {});
+          return resp;
+        })
+        .catch(() => cached);
+      return cached || network;
     })
   );
+});
+
+// permet à la page de demander une activation immédiate
+self.addEventListener("message", (e) => {
+  if (e.data === "skip-waiting") self.skipWaiting();
 });

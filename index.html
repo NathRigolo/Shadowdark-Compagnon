@@ -300,7 +300,26 @@ document.querySelectorAll(".dbtn").forEach(b=>b.addEventListener("click",()=>{co
 let toastTimer=null;
 function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2200);}
 
-if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("./sw.js").catch(()=>{});});}
+if("serviceWorker" in navigator){
+  let refreshing=false;
+  navigator.serviceWorker.addEventListener("controllerchange",()=>{
+    if(refreshing)return; refreshing=true; window.location.reload();
+  });
+  window.addEventListener("load",()=>{
+    navigator.serviceWorker.register("./sw.js").then(reg=>{
+      // si une nouvelle version est trouvée, on l'active dès qu'elle est prête
+      reg.addEventListener("updatefound",()=>{
+        const nw=reg.installing;
+        if(!nw)return;
+        nw.addEventListener("statechange",()=>{
+          if(nw.state==="installed" && navigator.serviceWorker.controller){
+            nw.postMessage("skip-waiting");
+          }
+        });
+      });
+    }).catch(()=>{});
+  });
+}
 render();
 </script>
 </body>
