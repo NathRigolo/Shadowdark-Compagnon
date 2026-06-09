@@ -68,18 +68,17 @@
   .stat .mod.neg{color:var(--blood)}
   .stat input{text-align:center;padding:6px;font-weight:700;background:var(--bg);border-color:var(--line-2)}
 
-  .counters{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-  @media(max-width:480px){.counters{grid-template-columns:1fr 1fr}.counters .chance{grid-column:1/-1}}
+  .counters{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
   .counter{background:var(--panel-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:13px 10px;text-align:center}
   .counter.pv{border-color:var(--blood-deep)}
   .counter.chance{border-color:var(--accent-deep)}
   .counter .clabel{font-weight:800;text-transform:uppercase;letter-spacing:1.2px;font-size:11px;color:var(--tx-dim)}
   .counter.pv .clabel{color:var(--blood)}
   .counter.chance .clabel{color:var(--accent-2)}
-  .stepper{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px}
-  .step{width:40px;height:40px;border-radius:50%;border:1px solid var(--line-2);background:var(--raised);font-size:22px;font-weight:700;color:var(--tx);cursor:pointer;line-height:1}
+  .stepper{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px}
+  .step{width:38px;height:38px;border-radius:50%;border:1px solid var(--line-2);background:var(--raised);font-size:21px;font-weight:700;color:var(--tx);cursor:pointer;line-height:1;flex:none}
   .step:active{transform:translateY(1px)}
-  .bignum{font-family:"Iowan Old Style",Georgia,serif;font-size:32px;font-weight:700;min-width:46px}
+  .bignum{font-family:"Iowan Old Style",Georgia,serif;font-size:30px;font-weight:700;min-width:40px}
   .counter.pv .bignum{color:var(--blood)}
   .counter.chance .bignum{color:var(--accent-2)}
   .submax{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:9px;font-size:12px;color:var(--muted)}
