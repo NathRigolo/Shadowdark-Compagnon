@@ -1,0 +1,26 @@
+{
+  "name": "Diablerie — Fiche de personnage Shadowdark",
+  "short_name": "Diablerie",
+  "description": "Gestionnaire de personnage pour la campagne Diablerie (Shadowdark RPG).",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0c0c0e",
+  "theme_color": "#0c0c0e",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%230c0c0e'/%3E%3Cpath d='M256 70c46 64 80 96 80 158a80 80 0 1 1-160 0c0-30 14-56 32-80 2 30 16 46 32 46 16 0 24-16 16-46 30 16-16-62-48-78z' fill='%23d2761e'/%3E%3Cpath d='M256 70c46 64 80 96 80 158a80 80 0 0 1-80 80c30-12 44-40 44-74 0-40-22-70-44-100z' fill='%23a8551a'/%3E%3C/svg%3E",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%230c0c0e'/%3E%3Cpath d='M256 70c46 64 80 96 80 158a80 80 0 1 1-160 0c0-30 14-56 32-80 2 30 16 46 32 46 16 0 24-16 16-46 30 16-16-62-48-78z' fill='%23d2761e'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
