@@ -3,204 +3,159 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0c0c0e">
+<meta name="theme-color" content="#0e1014">
 <title>Diablerie — Fiche de perso</title>
 <link rel="manifest" href="./manifest.webmanifest">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230c0c0e'/%3E%3Cpath d='M32 8c6 8 10 12 10 20a10 10 0 1 1-20 0c0-4 2-7 4-10 0 4 2 6 4 6 2 0 3-2 2-6 4 2-2-8-6-10z' fill='%23d2761e'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230e1014'/%3E%3Cpath d='M32 8c6 8 10 12 10 20a10 10 0 1 1-20 0c0-4 2-7 4-10 0 4 2 6 4 6 2 0 3-2 2-6 4 2-2-8-6-10z' fill='%23d29a44'/%3E%3C/svg%3E">
 <style>
   :root{
-    --ink:#0c0c0e;
-    --ink-2:#141417;
-    --panel:#e9e3d4;
-    --panel-2:#ded6c3;
-    --panel-edge:#c6bda6;
-    --banner:#111113;
-    --banner-tx:#efe7d4;
-    --tx:#1b1813;
-    --muted:#736a55;
-    --ember:#d2761e;
-    --ember-deep:#a8551a;
-    --blood:#8a1c1c;
-    --gold:#c39433;
-    --ok:#2f6b3a;
-    --radius:4px;
+    --bg:#0e1014;--bg-grad:#171b22;--panel:#171b21;--panel-2:#1d222a;--raised:#212733;
+    --line:#2b313c;--line-2:#363d4a;--tx:#e9e4d6;--tx-dim:#aab0bc;--muted:#6f7682;
+    --accent:#cf9a44;--accent-2:#e7b75e;--accent-deep:#9c6f2c;--blood:#bd4a45;--blood-deep:#7e2b28;--ok:#5f9468;
+    --r:10px;--r-sm:7px;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{margin:0;padding:0}
-  body{
-    background:var(--ink);
-    color:var(--panel);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    font-size:16px;line-height:1.4;
-    padding-bottom:96px;
-    background-image:radial-gradient(circle at 50% -10%, #1a1a1f 0%, var(--ink) 60%);
-    min-height:100vh;
-  }
+  body{background:var(--bg);background-image:radial-gradient(120% 70% at 50% -10%, var(--bg-grad), var(--bg) 55%);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.45;min-height:100vh;padding-bottom:96px}
 
-  /* ---------- Barre supérieure ---------- */
-  .topbar{
-    position:sticky;top:0;z-index:30;
-    display:flex;align-items:center;gap:8px;
-    padding:10px 12px;
-    padding-top:max(10px, env(safe-area-inset-top));
-    background:rgba(12,12,14,.92);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid #2a2a30;
-  }
-  .wordmark{
-    font-family:Georgia,"Times New Roman",serif;
-    font-weight:700;font-style:italic;
-    font-size:20px;letter-spacing:.5px;color:var(--ember);
-    margin-right:auto;white-space:nowrap;
-  }
-  .wordmark span{color:var(--panel);font-style:normal}
-  select,.btn{
-    font:inherit;color:var(--panel);
-    background:var(--ink-2);border:1px solid #36363d;
-    border-radius:var(--radius);padding:8px 10px;
-    cursor:pointer;
-  }
-  select{max-width:42vw}
-  .btn{font-weight:600}
-  .btn:active{transform:translateY(1px)}
-  .btn-ember{background:var(--ember-deep);border-color:var(--ember);color:#fff}
-  .icon-btn{padding:8px 11px;font-size:18px;line-height:1}
+  .topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:10px;padding:12px 16px;padding-top:max(12px,env(safe-area-inset-top));background:rgba(14,16,20,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .wordmark{font-family:"Iowan Old Style",Georgia,serif;font-weight:700;font-style:italic;font-size:21px;letter-spacing:.3px;margin-right:auto;white-space:nowrap;color:var(--tx)}
+  .wordmark b{color:var(--accent-2);font-style:normal;font-weight:700}
+  select,.btn{font:inherit;color:var(--tx);background:var(--raised);border:1px solid var(--line-2);border-radius:var(--r-sm);padding:9px 11px;cursor:pointer}
+  select{max-width:44vw}
+  .icon-btn{padding:9px 12px;font-size:18px;line-height:1}
+  .btn:active,.icon-btn:active{transform:translateY(1px)}
 
-  /* ---------- Disposition ---------- */
-  main{max-width:760px;margin:0 auto;padding:12px;display:grid;gap:12px}
-  .card{
-    background:var(--panel);color:var(--tx);
-    border:1px solid var(--panel-edge);
-    border-radius:var(--radius);
-    box-shadow:0 2px 0 #00000055, inset 0 0 0 1px #ffffff30;
-    overflow:hidden;
-  }
-  .banner{
-    background:var(--banner);color:var(--banner-tx);
-    font-weight:800;text-transform:uppercase;letter-spacing:1.5px;
-    font-size:13px;padding:7px 12px;
-    display:flex;align-items:center;justify-content:space-between;
-  }
-  .banner .accent{color:var(--ember);font-size:11px;letter-spacing:1px;text-transform:none;font-weight:700}
-  .card-body{padding:12px}
+  .tabs{position:sticky;top:60px;z-index:25;display:flex;gap:4px;padding:8px 12px;background:rgba(14,16,20,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:1;min-width:fit-content;white-space:nowrap;padding:10px 14px;border-radius:var(--r-sm);border:1px solid transparent;background:none;color:var(--tx-dim);font:inherit;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;font-size:14px}
+  .tab .ic{font-size:16px}
+  .tab.active{background:var(--raised);color:var(--accent-2);border-color:var(--line-2)}
 
-  label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);font-weight:700;margin-bottom:3px}
-  input,textarea{
-    width:100%;font:inherit;color:var(--tx);
-    background:#fbf8ef;border:1px solid var(--panel-edge);
-    border-radius:var(--radius);padding:8px;
-  }
-  input:focus,textarea:focus{outline:2px solid var(--ember);outline-offset:-1px;border-color:var(--ember)}
-  textarea{resize:vertical;min-height:84px;line-height:1.45}
+  main{max-width:1040px;margin:0 auto;padding:16px}
+  .tabpane{display:none}
+  .tabpane.active{display:block}
+  .pane-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-items:start}
+  .span-all{grid-column:1/-1}
+
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+  .phead{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:13px 16px 11px;border-bottom:1px solid var(--line)}
+  .phead h2{margin:0;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1.6px;color:var(--tx);display:flex;align-items:center;gap:9px}
+  .phead h2::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--accent);transform:rotate(45deg);display:inline-block}
+  .phead .tag{font-size:11px;color:var(--muted);font-weight:600}
+  .phead .tag.warn{color:var(--blood)}
+  .pbody{padding:16px}
+
+  label{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.9px;color:var(--muted);font-weight:700;margin-bottom:4px}
+  input,textarea{width:100%;font:inherit;color:var(--tx);background:var(--panel-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:10px}
+  input::placeholder,textarea::placeholder{color:#565d68}
+  input:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px #cf9a4433}
+  textarea{resize:vertical;min-height:90px;line-height:1.5}
   input[type=number]{appearance:textfield;-moz-appearance:textfield}
   input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 
-  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .row{display:grid;gap:12px}
+  .row.c2{grid-template-columns:1fr 1fr}
+  .row.c3{grid-template-columns:1fr 1fr 1fr}
+  .row + .row{margin-top:12px}
   .field{min-width:0}
 
-  /* ---------- Caracs ---------- */
   .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-  @media(max-width:420px){.stats{grid-template-columns:repeat(2,1fr)}}
-  .stat{
-    background:#fbf8ef;border:1px solid var(--panel-edge);border-radius:var(--radius);
-    padding:8px;text-align:center;
-  }
-  .stat .name{font-weight:800;letter-spacing:1px;font-size:13px;color:var(--tx)}
-  .stat .mod{font-family:Georgia,serif;font-size:30px;font-weight:700;line-height:1;margin:2px 0;color:var(--ember-deep)}
+  @media(max-width:380px){.stats{grid-template-columns:repeat(2,1fr)}}
+  .stat{background:var(--panel-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:11px 8px;text-align:center}
+  .stat .name{font-weight:800;letter-spacing:1.5px;font-size:12px;color:var(--tx-dim)}
+  .stat .mod{font-family:"Iowan Old Style",Georgia,serif;font-size:34px;font-weight:700;line-height:1;margin:3px 0 5px;color:var(--accent-2)}
   .stat .mod.neg{color:var(--blood)}
-  .stat input{text-align:center;padding:5px;font-weight:700}
-  .stat .vlabel{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:2px}
+  .stat input{text-align:center;padding:6px;font-weight:700;background:var(--bg);border-color:var(--line-2)}
 
-  /* ---------- Compteurs (PV/CA/Chance) ---------- */
-  .counters{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-  @media(max-width:520px){.counters{grid-template-columns:1fr}}
-  .counter{background:#fbf8ef;border:1px solid var(--panel-edge);border-radius:var(--radius);padding:10px;text-align:center}
-  .counter .clabel{font-weight:800;text-transform:uppercase;letter-spacing:1px;font-size:12px}
-  .counter.chance .clabel{color:var(--ember-deep)}
-  .stepper{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px}
-  .step{
-    width:38px;height:38px;border-radius:50%;border:1px solid var(--panel-edge);
-    background:#fff;font-size:22px;font-weight:700;color:var(--tx);cursor:pointer;line-height:1;
-  }
+  .counters{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+  @media(max-width:480px){.counters{grid-template-columns:1fr 1fr}.counters .chance{grid-column:1/-1}}
+  .counter{background:var(--panel-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:13px 10px;text-align:center}
+  .counter.pv{border-color:var(--blood-deep)}
+  .counter.chance{border-color:var(--accent-deep)}
+  .counter .clabel{font-weight:800;text-transform:uppercase;letter-spacing:1.2px;font-size:11px;color:var(--tx-dim)}
+  .counter.pv .clabel{color:var(--blood)}
+  .counter.chance .clabel{color:var(--accent-2)}
+  .stepper{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px}
+  .step{width:40px;height:40px;border-radius:50%;border:1px solid var(--line-2);background:var(--raised);font-size:22px;font-weight:700;color:var(--tx);cursor:pointer;line-height:1}
   .step:active{transform:translateY(1px)}
-  .bignum{font-family:Georgia,serif;font-size:30px;font-weight:700;min-width:42px}
-  .pv-row{display:flex;align-items:center;justify-content:center;gap:6px}
-  .pv-row input{width:54px;text-align:center;font-weight:700}
-  .hint{font-size:10.5px;color:var(--muted);margin-top:5px;line-height:1.3}
+  .bignum{font-family:"Iowan Old Style",Georgia,serif;font-size:32px;font-weight:700;min-width:46px}
+  .counter.pv .bignum{color:var(--blood)}
+  .counter.chance .bignum{color:var(--accent-2)}
+  .submax{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:9px;font-size:12px;color:var(--muted)}
+  .submax input{width:58px;text-align:center;padding:6px;font-weight:700}
+  .hint{font-size:10.5px;color:var(--muted);margin-top:7px;line-height:1.35}
 
-  /* ---------- Inventaire ---------- */
-  .inv-cap{font-size:12px;color:var(--muted);font-weight:700}
-  .inv-cap b{color:var(--tx)}
-  .inv-cap.over b{color:var(--blood)}
-  .coins{display:flex;gap:8px;margin-bottom:10px}
-  .coins .field{flex:1}
-  .inv-line{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+  .invbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:13px;color:var(--muted);font-weight:700}
+  .invbar b{color:var(--tx)}
+  .invbar.over b{color:var(--blood)}
+  .coins{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px}
+  .inv-line{display:flex;align-items:center;gap:9px;margin-bottom:7px}
   .inv-line .num{width:22px;text-align:right;color:var(--muted);font-weight:700;font-size:13px;flex:none}
-  .inv-line .del{flex:none;width:30px;height:30px;border-radius:var(--radius);border:1px solid var(--panel-edge);background:#fff;color:var(--blood);font-weight:700;cursor:pointer}
-  .add-line{margin-top:6px;width:100%;padding:9px;border:1px dashed var(--panel-edge);background:#fbf8ef;border-radius:var(--radius);font-weight:700;color:var(--ember-deep);cursor:pointer}
+  .inv-line .del{flex:none;width:34px;height:38px;border-radius:var(--r-sm);border:1px solid var(--line-2);background:var(--raised);color:var(--blood);font-weight:700;cursor:pointer;font-size:18px}
+  .add-line{margin-top:8px;width:100%;padding:11px;border:1px dashed var(--line-2);background:var(--panel-2);border-radius:var(--r-sm);font-weight:700;color:var(--accent-2);cursor:pointer}
+  .add-line:active{transform:translateY(1px)}
 
-  /* ---------- Lanceur de dés ---------- */
-  .sheet{
-    position:fixed;left:0;right:0;bottom:0;z-index:50;
-    background:var(--ink-2);border-top:2px solid var(--ember);
-    border-radius:14px 14px 0 0;
-    padding:14px 14px max(14px,env(safe-area-inset-bottom));
-    transform:translateY(110%);transition:transform .25s ease;
-    box-shadow:0 -8px 30px #000a;
-  }
-  .sheet.open{transform:translateY(0)}
-  .sheet h3{margin:0 0 10px;font-size:14px;letter-spacing:1px;text-transform:uppercase;color:var(--ember)}
-  .sheet .close{position:absolute;top:10px;right:12px;background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer}
-  .dice-stats{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:10px}
-  @media(max-width:420px){.dice-stats{grid-template-columns:repeat(3,1fr)}}
-  .dchip{padding:9px 4px;border-radius:var(--radius);border:1px solid #3a3a42;background:#1c1c20;color:var(--panel);font-weight:700;cursor:pointer;text-align:center;font-size:13px}
-  .dchip small{display:block;color:var(--ember);font-size:12px}
-  .advrow{display:flex;gap:6px;margin-bottom:10px}
-  .advrow .btn{flex:1;text-align:center;padding:9px}
-  .advrow .btn.active{background:var(--ember-deep);border-color:var(--ember);color:#fff}
-  .dmgrow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
-  .dbtn{flex:1;min-width:48px;padding:9px 4px;border-radius:var(--radius);border:1px solid #3a3a42;background:#1c1c20;color:var(--panel);font-weight:700;cursor:pointer}
-  .result{
-    margin-top:6px;background:#000;border:1px solid #333;border-radius:var(--radius);
-    padding:12px;text-align:center;min-height:58px;
-  }
-  .result .big{font-family:Georgia,serif;font-size:38px;font-weight:700;line-height:1;color:var(--panel)}
-  .result .big.crit{color:var(--gold)}
-  .result .big.fail{color:var(--blood)}
-  .result .detail{font-size:12px;color:var(--muted);margin-top:4px}
-
-  .fab{
-    position:fixed;right:16px;bottom:max(18px,env(safe-area-inset-bottom));z-index:40;
-    width:60px;height:60px;border-radius:50%;border:2px solid var(--ember);
-    background:var(--ember-deep);color:#fff;font-size:26px;cursor:pointer;
-    box-shadow:0 6px 18px #000a;
-  }
-  .scrim{position:fixed;inset:0;background:#000a;z-index:45;opacity:0;pointer-events:none;transition:opacity .25s}
+  .scrim{position:fixed;inset:0;background:#000c;z-index:45;opacity:0;pointer-events:none;transition:opacity .25s}
   .scrim.open{opacity:1;pointer-events:auto}
+  .sheet{position:fixed;left:0;right:0;bottom:0;z-index:50;margin:0 auto;max-width:560px;background:var(--panel);border:1px solid var(--line-2);border-top:2px solid var(--accent);border-radius:16px 16px 0 0;padding:16px 16px max(16px,env(safe-area-inset-bottom));transform:translateY(110%);transition:transform .26s cubic-bezier(.2,.8,.2,1);box-shadow:0 -12px 40px #000b}
+  @media(min-width:600px){.sheet{bottom:16px;border-radius:16px;left:auto;right:16px}}
+  .sheet.open{transform:translateY(0)}
+  .sheet h3{margin:0 0 10px;font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent-2);font-weight:800}
+  .sheet h3:not(:first-of-type){margin-top:16px}
+  .sheet .close{position:absolute;top:12px;right:14px;background:none;border:none;color:var(--muted);font-size:24px;cursor:pointer;line-height:1}
+  .dice-stats{display:grid;grid-template-columns:repeat(6,1fr);gap:7px}
+  @media(max-width:440px){.dice-stats{grid-template-columns:repeat(3,1fr)}}
+  .dchip{padding:10px 4px;border-radius:var(--r-sm);border:1px solid var(--line-2);background:var(--panel-2);color:var(--tx);font-weight:700;cursor:pointer;text-align:center;font-size:13px}
+  .dchip small{display:block;color:var(--accent-2);font-size:13px;margin-top:2px}
+  .dchip:active{transform:translateY(1px)}
+  .advrow{display:flex;gap:7px;margin-top:10px}
+  .advrow .btn{flex:1;text-align:center;padding:10px;font-weight:700}
+  .advrow .btn.active{background:var(--accent-deep);border-color:var(--accent);color:#fff}
+  .dmgrow{display:flex;flex-wrap:wrap;gap:7px}
+  .dbtn{flex:1;min-width:50px;padding:10px 4px;border-radius:var(--r-sm);border:1px solid var(--line-2);background:var(--panel-2);color:var(--tx);font-weight:700;cursor:pointer}
+  .dbtn:active{transform:translateY(1px)}
+  .countrow{display:flex;align-items:center;gap:10px;margin-top:9px}
+  .countrow label{margin:0}
+  .countrow input{width:84px}
+  .result{margin-top:12px;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-sm);padding:14px;text-align:center;min-height:64px}
+  .result .big{font-family:"Iowan Old Style",Georgia,serif;font-size:42px;font-weight:700;line-height:1;color:var(--tx)}
+  .result .big.crit{color:var(--accent-2)}
+  .result .big.fail{color:var(--blood)}
+  .result .detail{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.4}
 
-  .menu{position:absolute;top:54px;right:12px;z-index:60;background:var(--ink-2);border:1px solid #36363d;border-radius:var(--radius);overflow:hidden;display:none;min-width:190px}
+  .fab{position:fixed;right:18px;bottom:max(20px,env(safe-area-inset-bottom));z-index:40;width:62px;height:62px;border-radius:50%;border:1px solid var(--accent);background:linear-gradient(160deg,var(--accent),var(--accent-deep));color:#1a140a;font-size:27px;cursor:pointer;box-shadow:0 8px 22px #000a}
+  .fab:active{transform:translateY(1px)}
+
+  .menu{position:absolute;top:58px;right:14px;z-index:60;background:var(--panel);border:1px solid var(--line-2);border-radius:var(--r-sm);overflow:hidden;display:none;min-width:210px;box-shadow:0 12px 30px #000a}
   .menu.open{display:block}
-  .menu button{display:block;width:100%;text-align:left;padding:11px 14px;background:none;border:none;color:var(--panel);font:inherit;cursor:pointer}
-  .menu button:hover{background:#26262c}
-  .menu button.danger{color:#e07a7a}
-  .menu hr{border:none;border-top:1px solid #2c2c33;margin:0}
+  .menu button{display:block;width:100%;text-align:left;padding:12px 15px;background:none;border:none;color:var(--tx);font:inherit;cursor:pointer}
+  .menu button:hover{background:var(--raised)}
+  .menu button.danger{color:var(--blood)}
+  .menu hr{border:none;border-top:1px solid var(--line);margin:0}
 
-  .toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(20px);z-index:70;background:#000;border:1px solid var(--ember);color:var(--panel);padding:10px 16px;border-radius:var(--radius);opacity:0;transition:all .25s;pointer-events:none;font-size:14px}
+  .toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%) translateY(20px);z-index:70;background:#000;border:1px solid var(--accent);color:var(--tx);padding:11px 18px;border-radius:var(--r-sm);opacity:0;transition:all .25s;pointer-events:none;font-size:14px}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body>
 
 <div class="topbar">
-  <div class="wordmark">Diablerie<span> · fiche</span></div>
+  <div class="wordmark">Diablerie<b> ·</b></div>
   <select id="charSelect" aria-label="Choisir un personnage"></select>
-  <button class="btn icon-btn" id="menuBtn" aria-label="Menu">⋯</button>
+  <button class="icon-btn" id="menuBtn" aria-label="Menu">&#8943;</button>
 </div>
+
+<nav class="tabs" id="tabs">
+  <button class="tab active" data-tab="jeu"><span class="ic">&#9876;&#65039;</span>Jeu</button>
+  <button class="tab" data-tab="identite"><span class="ic">&#128220;</span>Identité</button>
+  <button class="tab" data-tab="sac"><span class="ic">&#127890;</span>Sac</button>
+  <button class="tab" data-tab="grimoire"><span class="ic">&#10022;</span>Grimoire</button>
+</nav>
 
 <div class="menu" id="menu">
   <button id="newChar">+ Nouveau personnage</button>
-  <button id="renameChar">Renommer l'entrée</button>
+  <button id="renameChar">Renommer</button>
   <hr>
   <button id="exportChar">Exporter (sauvegarde)</button>
   <button id="importChar">Importer un fichier</button>
@@ -211,11 +166,10 @@
 
 <main id="app"></main>
 
-<!-- Lanceur de dés -->
-<button class="fab" id="diceFab" aria-label="Lancer les dés">🎲</button>
+<button class="fab" id="diceFab" aria-label="Lancer les dés">&#127922;</button>
 <div class="scrim" id="scrim"></div>
 <div class="sheet" id="diceSheet">
-  <button class="close" id="diceClose" aria-label="Fermer">×</button>
+  <button class="close" id="diceClose" aria-label="Fermer">&times;</button>
   <h3>Jet de d20 + modificateur</h3>
   <div class="dice-stats" id="diceStats"></div>
   <div class="advrow">
@@ -233,386 +187,122 @@
     <button class="dbtn" data-die="20">d20</button>
     <button class="dbtn" data-die="100">d100</button>
   </div>
-  <div class="dmgrow" style="align-items:center">
-    <label style="margin:0;color:var(--muted)">Nombre de dés</label>
-    <input type="number" id="diceCount" value="1" min="1" max="20" style="width:80px;background:#1c1c20;color:var(--panel);border-color:#3a3a42">
+  <div class="countrow">
+    <label>Nombre de dés</label>
+    <input type="number" id="diceCount" value="1" min="1" max="20">
   </div>
-  <div class="result" id="diceResult">
-    <div class="detail">Touche une carac pour lancer 1d20, ou un dé pour les dégâts.</div>
-  </div>
+  <div class="result" id="diceResult"><div class="detail">Touche une carac pour 1d20, ou un dé pour les dégâts.</div></div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
 "use strict";
-
-/* ===================== Données ===================== */
-const KEY = "diablerie_perso_v1";
-const STATS = [
-  {k:"for", label:"FOR"},
-  {k:"dex", label:"DEX"},
-  {k:"con", label:"CON"},
-  {k:"int", label:"INT"},
-  {k:"sag", label:"SAG"},
-  {k:"cha", label:"CHA"},
-];
-
-function blankChar(nom){
-  return {
-    id: "c_"+Date.now()+"_"+Math.floor(Math.random()*9999),
-    nom: nom||"Nouvel aventurier",
-    ascendance:"", classe:"", niveau:"1", titre:"", alignement:"", origines:"", divinite:"",
-    pxCur:"0", pxMax:"10",
-    stats:{for:10,dex:10,con:10,int:10,sag:10,cha:10},
-    pvCur:1, pvMax:1, ca:10,
-    chance:0,
-    attaques:"", talents:"",
-    inventaire:["","","",""],
-    po:"0", pa:"0", pc:"0",
-    gratuit:"",
-    notes:""
-  };
-}
-
-let store = load();
-function load(){
-  try{
-    const raw = localStorage.getItem(KEY);
-    if(raw){ const s = JSON.parse(raw); if(s && s.chars && s.chars.length) return s; }
-  }catch(e){}
-  const c = blankChar("Aventurier sans nom");
-  return {chars:[c], activeId:c.id};
-}
+const KEY="diablerie_perso_v1";
+const STATS=[{k:"for",label:"FOR"},{k:"dex",label:"DEX"},{k:"con",label:"CON"},{k:"int",label:"INT"},{k:"sag",label:"SAG"},{k:"cha",label:"CHA"}];
+let activeTab="jeu";
+function blankChar(nom){return {id:"c_"+Date.now()+"_"+Math.floor(Math.random()*9999),nom:nom||"Nouvel aventurier",ascendance:"",classe:"",niveau:"1",titre:"",alignement:"",origines:"",divinite:"",pxCur:"0",pxMax:"10",stats:{for:10,dex:10,con:10,int:10,sag:10,cha:10},pvCur:1,pvMax:1,ca:10,chance:0,attaques:"",talents:"",inventaire:["","","",""],po:"0",pa:"0",pc:"0",gratuit:"",notes:""};}
+let store=load();
+function load(){try{const raw=localStorage.getItem(KEY);if(raw){const s=JSON.parse(raw);if(s&&s.chars&&s.chars.length)return s;}}catch(e){}const c=blankChar("Aventurier sans nom");return{chars:[c],activeId:c.id};}
 let saveTimer=null;
-function save(){
-  clearTimeout(saveTimer);
-  saveTimer = setTimeout(()=>{ try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){ toast("Sauvegarde impossible (stockage plein ?)"); } }, 250);
-}
-function active(){ return store.chars.find(c=>c.id===store.activeId) || store.chars[0]; }
-
-/* ===================== Utilitaires ===================== */
-function mod(score){
-  const n = parseInt(score,10);
-  if(isNaN(n)) return 0;
-  return Math.floor((n-10)/2);
-}
-function fmtMod(m){ return (m>=0?"+":"")+m; }
-function capacite(){ const f = parseInt(active().stats.for,10)||0; return Math.max(f,10); }
-function invUtilises(){ return active().inventaire.filter(x=>x && x.trim()!=="").length; }
-
-/* ===================== Rendu ===================== */
-const app = document.getElementById("app");
-
+function save(){clearTimeout(saveTimer);saveTimer=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(store));}catch(e){toast("Sauvegarde impossible");}},250);}
+function active(){return store.chars.find(c=>c.id===store.activeId)||store.chars[0];}
+function mod(s){const n=parseInt(s,10);return isNaN(n)?0:Math.floor((n-10)/2);}
+function fmtMod(m){return(m>=0?"+":"")+m;}
+function capacite(){return Math.max(parseInt(active().stats.for,10)||0,10);}
+function invUtilises(){return active().inventaire.filter(x=>x&&x.trim()!=="").length;}
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+const app=document.getElementById("app");
 function render(){
-  const c = active();
-  app.innerHTML = "";
-
-  // --- Identité ---
-  app.appendChild(card("Identité", `
-    <div class="field"><label>Nom</label><input data-f="nom" value="${esc(c.nom)}"></div>
-    <div class="grid-2" style="margin-top:10px">
-      <div class="field"><label>Ascendance</label><input data-f="ascendance" value="${esc(c.ascendance)}" placeholder="Humain, Elfe…"></div>
-      <div class="field"><label>Classe</label><input data-f="classe" value="${esc(c.classe)}" placeholder="Guerrier, Sorcière…"></div>
-    </div>
-    <div class="grid-3" style="margin-top:10px">
-      <div class="field"><label>Niveau</label><input data-f="niveau" value="${esc(c.niveau)}"></div>
-      <div class="field"><label>PX actuels</label><input data-f="pxCur" inputmode="numeric" value="${esc(c.pxCur)}"></div>
-      <div class="field"><label>PX requis</label><input data-f="pxMax" inputmode="numeric" value="${esc(c.pxMax)}"></div>
-    </div>
-    <div class="grid-2" style="margin-top:10px">
-      <div class="field"><label>Titre</label><input data-f="titre" value="${esc(c.titre)}"></div>
-      <div class="field"><label>Alignement</label><input data-f="alignement" value="${esc(c.alignement)}" placeholder="Loyal, Neutre, Chaotique"></div>
-    </div>
-    <div class="grid-2" style="margin-top:10px">
-      <div class="field"><label>Origines</label><input data-f="origines" value="${esc(c.origines)}"></div>
-      <div class="field"><label>Divinité</label><input data-f="divinite" value="${esc(c.divinite)}"></div>
-    </div>
-  `));
-
-  // --- Caractéristiques ---
-  const statsCard = card("Caractéristiques", `<div class="stats" id="statsGrid"></div>`, "modificateur calculé");
-  app.appendChild(statsCard);
-  const grid = statsCard.querySelector("#statsGrid");
-  STATS.forEach(s=>{
-    const m = mod(c.stats[s.k]);
-    const el = document.createElement("div");
-    el.className="stat";
-    el.innerHTML = `
-      <div class="name">${s.label}</div>
-      <div class="mod ${m<0?'neg':''}">${fmtMod(m)}</div>
-      <div class="vlabel">valeur</div>
-      <input type="number" inputmode="numeric" data-stat="${s.k}" value="${c.stats[s.k]}" min="1" max="20">`;
-    grid.appendChild(el);
-  });
-
-  // --- Compteurs ---
-  app.appendChild(card("Vitalité", `
-    <div class="counters">
-      <div class="counter">
-        <div class="clabel">PV</div>
-        <div class="stepper">
-          <button class="step" data-pv="-1">−</button>
-          <span class="bignum" id="pvCur">${c.pvCur}</span>
-          <button class="step" data-pv="1">+</button>
-        </div>
-        <div class="pv-row" style="margin-top:8px">
-          <span style="font-size:12px;color:var(--muted)">max</span>
-          <input type="number" inputmode="numeric" data-f-num="pvMax" value="${c.pvMax}">
-        </div>
-      </div>
-      <div class="counter">
-        <div class="clabel">CA</div>
-        <div class="stepper">
-          <button class="step" data-ca="-1">−</button>
-          <span class="bignum" id="caVal">${c.ca}</span>
-          <button class="step" data-ca="1">+</button>
-        </div>
-        <div class="hint">Classe d'Armure</div>
-      </div>
-      <div class="counter chance">
-        <div class="clabel">Jetons de chance</div>
-        <div class="stepper">
-          <button class="step" data-chance="-1">−</button>
-          <span class="bignum" id="chanceVal" style="color:var(--ember-deep)">${c.chance}</span>
-          <button class="step" data-chance="1">+</button>
-        </div>
-        <div class="hint">Mode Pulp : pas de max. Tu démarres chaque séance avec 1d4 jetons.</div>
-      </div>
-    </div>
-  `));
-
-  // --- Attaques ---
-  app.appendChild(card("Attaques", `<textarea data-f="attaques" placeholder="Épée longue +1 (1d8)&#10;Arc court (loin) +2 (1d6)">${esc(c.attaques)}</textarea>`));
-
-  // --- Talents / Sorts ---
-  app.appendChild(card("Talents / Sorts", `<textarea data-f="talents" placeholder="Talents de classe, sorts connus, capacités…" style="min-height:120px">${esc(c.talents)}</textarea>`));
-
-  // --- Inventaire ---
-  const over = invUtilises() > capacite();
-  const invCard = card("Inventaire", `
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-      <span class="inv-cap ${over?'over':''}">Emplacements : <b>${invUtilises()} / ${capacite()}</b></span>
-    </div>
-    <div class="coins">
-      <div class="field"><label>PO</label><input data-f="po" inputmode="numeric" value="${esc(c.po)}"></div>
-      <div class="field"><label>PA</label><input data-f="pa" inputmode="numeric" value="${esc(c.pa)}"></div>
-      <div class="field"><label>PC</label><input data-f="pc" inputmode="numeric" value="${esc(c.pc)}"></div>
-    </div>
-    <div id="invList"></div>
-    <button class="add-line" id="addInv">+ Ajouter un objet</button>
-    <div style="margin-top:12px">
-      <label>Transporté gratuitement</label>
-      <textarea data-f="gratuit" placeholder="Sac à dos, 1er bloc de 100 pièces…" style="min-height:60px">${esc(c.gratuit)}</textarea>
-    </div>
-  `, over ? "surcharge !" : "");
-  app.appendChild(invCard);
-  const invList = invCard.querySelector("#invList");
-  c.inventaire.forEach((item,i)=>{
-    const line = document.createElement("div");
-    line.className="inv-line";
-    line.innerHTML = `<span class="num">${i+1}.</span>
-      <input data-inv="${i}" value="${esc(item)}" placeholder="…">
-      <button class="del" data-delinv="${i}" aria-label="Retirer">×</button>`;
-    invList.appendChild(line);
-  });
-
-  // --- Notes ---
-  app.appendChild(card("Notes", `<textarea data-f="notes" placeholder="Objectifs perso, contacts, rumeurs, à faire…" style="min-height:120px">${esc(c.notes)}</textarea>`));
-
-  bindInputs();
-  refreshSelect();
-  buildDiceStats();
+  const c=active();
+  app.innerHTML=`
+    <div class="tabpane" data-pane="jeu"><div class="pane-grid">
+      ${panel("Caractéristiques",`<div class="stats" id="statsGrid"></div>`,"mod. auto")}
+      ${panel("Vitalité",vitaliteHtml(c))}
+      <div class="span-all">${panel("Attaques",`<textarea data-f="attaques" placeholder="Épée longue +1 (1d8)&#10;Arc court (loin) +2 (1d6)">${esc(c.attaques)}</textarea>`)}</div>
+    </div></div>
+    <div class="tabpane" data-pane="identite"><div class="pane-grid">${panel("Identité",identiteHtml(c))}</div></div>
+    <div class="tabpane" data-pane="sac"><div class="pane-grid">${panel("Inventaire",invHtml(c), invUtilises()>capacite()?'<span class="warn">surcharge</span>':'')}</div></div>
+    <div class="tabpane" data-pane="grimoire"><div class="pane-grid">
+      ${panel("Talents / Sorts",`<textarea data-f="talents" placeholder="Talents de classe, sorts connus, capacités…" style="min-height:160px">${esc(c.talents)}</textarea>`)}
+      ${panel("Notes",`<textarea data-f="notes" placeholder="Objectifs perso, contacts, rumeurs, à faire…" style="min-height:160px">${esc(c.notes)}</textarea>`)}
+    </div></div>`;
+  const grid=app.querySelector("#statsGrid");
+  STATS.forEach(s=>{const m=mod(c.stats[s.k]);const el=document.createElement("div");el.className="stat";el.innerHTML=`<div class="name">${s.label}</div><div class="mod ${m<0?'neg':''}">${fmtMod(m)}</div><input type="number" inputmode="numeric" data-stat="${s.k}" value="${c.stats[s.k]}" min="1" max="20">`;grid.appendChild(el);});
+  const invList=app.querySelector("#invList");
+  c.inventaire.forEach((item,i)=>{const line=document.createElement("div");line.className="inv-line";line.innerHTML=`<span class="num">${i+1}.</span><input data-inv="${i}" value="${esc(item)}" placeholder="…"><button class="del" data-delinv="${i}" aria-label="Retirer">&times;</button>`;invList.appendChild(line);});
+  applyTab();bindInputs();refreshSelect();buildDiceStats();
 }
+function panel(title,body,tag){return `<section class="panel"><div class="phead"><h2>${title}</h2>${tag?`<span class="tag">${tag}</span>`:""}</div><div class="pbody">${body}</div></section>`;}
+function identiteHtml(c){return `
+  <div class="field"><label>Nom</label><input data-f="nom" value="${esc(c.nom)}"></div>
+  <div class="row c2" style="margin-top:12px"><div class="field"><label>Ascendance</label><input data-f="ascendance" value="${esc(c.ascendance)}" placeholder="Humain, Elfe…"></div><div class="field"><label>Classe</label><input data-f="classe" value="${esc(c.classe)}" placeholder="Guerrier, Sorcière…"></div></div>
+  <div class="row c3"><div class="field"><label>Niveau</label><input data-f="niveau" value="${esc(c.niveau)}"></div><div class="field"><label>PX actuels</label><input data-f="pxCur" inputmode="numeric" value="${esc(c.pxCur)}"></div><div class="field"><label>PX requis</label><input data-f="pxMax" inputmode="numeric" value="${esc(c.pxMax)}"></div></div>
+  <div class="row c2"><div class="field"><label>Titre</label><input data-f="titre" value="${esc(c.titre)}"></div><div class="field"><label>Alignement</label><input data-f="alignement" value="${esc(c.alignement)}" placeholder="Loyal, Neutre, Chaotique"></div></div>
+  <div class="row c2"><div class="field"><label>Origines</label><input data-f="origines" value="${esc(c.origines)}"></div><div class="field"><label>Divinité</label><input data-f="divinite" value="${esc(c.divinite)}"></div></div>`;}
+function vitaliteHtml(c){return `
+  <div class="counters">
+    <div class="counter pv"><div class="clabel">PV</div><div class="stepper"><button class="step" data-pv="-1">−</button><span class="bignum" id="pvCur">${c.pvCur}</span><button class="step" data-pv="1">+</button></div><div class="submax">max <input type="number" inputmode="numeric" data-f-num="pvMax" value="${c.pvMax}"></div></div>
+    <div class="counter"><div class="clabel">CA</div><div class="stepper"><button class="step" data-ca="-1">−</button><span class="bignum" id="caVal">${c.ca}</span><button class="step" data-ca="1">+</button></div><div class="hint">Classe d'Armure</div></div>
+    <div class="counter chance"><div class="clabel">Chance</div><div class="stepper"><button class="step" data-chance="-1">−</button><span class="bignum" id="chanceVal">${c.chance}</span><button class="step" data-chance="1">+</button></div><div class="hint">Pulp : pas de max. 1d4 jetons en début de séance.</div></div>
+  </div>`;}
+function invHtml(c){const over=invUtilises()>capacite();return `
+  <div class="invbar ${over?'over':''}">Emplacements <b>${invUtilises()} / ${capacite()}</b></div>
+  <div class="coins"><div class="field"><label>PO</label><input data-f="po" inputmode="numeric" value="${esc(c.po)}"></div><div class="field"><label>PA</label><input data-f="pa" inputmode="numeric" value="${esc(c.pa)}"></div><div class="field"><label>PC</label><input data-f="pc" inputmode="numeric" value="${esc(c.pc)}"></div></div>
+  <div id="invList"></div>
+  <button class="add-line" id="addInv">+ Ajouter un objet</button>
+  <div style="margin-top:14px"><label>Transporté gratuitement</label><textarea data-f="gratuit" placeholder="Sac à dos, 1er bloc de 100 pièces…" style="min-height:64px">${esc(c.gratuit)}</textarea></div>`;}
 
-function card(title, bodyHtml, accent){
-  const el = document.createElement("section");
-  el.className="card";
-  el.innerHTML = `<div class="banner"><span>${title}</span>${accent?`<span class="accent">${accent}</span>`:""}</div><div class="card-body">${bodyHtml}</div>`;
-  return el;
-}
-function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+const tabbar=document.getElementById("tabs");
+tabbar.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{activeTab=b.dataset.tab;applyTab();window.scrollTo(0,0);}));
+function applyTab(){tabbar.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===activeTab));app.querySelectorAll(".tabpane").forEach(p=>p.classList.toggle("active",p.dataset.pane===activeTab));}
 
-/* ===================== Liaisons ===================== */
 function bindInputs(){
-  const c = active();
-  app.querySelectorAll("[data-f]").forEach(inp=>{
-    inp.addEventListener("input",()=>{ c[inp.dataset.f]=inp.value; save(); });
-  });
-  app.querySelectorAll("[data-f-num]").forEach(inp=>{
-    inp.addEventListener("input",()=>{ c[inp.dataset.fNum]=parseInt(inp.value,10)||0; save(); });
-  });
-  app.querySelectorAll("[data-stat]").forEach(inp=>{
-    inp.addEventListener("input",()=>{
-      c.stats[inp.dataset.stat]=parseInt(inp.value,10)||0;
-      const m = mod(c.stats[inp.dataset.stat]);
-      const box = inp.closest(".stat").querySelector(".mod");
-      box.textContent = fmtMod(m);
-      box.classList.toggle("neg", m<0);
-      // capacité dépend de FOR
-      if(inp.dataset.stat==="for"){ updateInvCap(); }
-      buildDiceStats();
-      save();
-    });
-  });
-  // PV stepper
-  app.querySelectorAll("[data-pv]").forEach(b=>b.addEventListener("click",()=>{
-    c.pvCur += parseInt(b.dataset.pv,10);
-    document.getElementById("pvCur").textContent = c.pvCur;
-    save();
-  }));
-  app.querySelectorAll("[data-ca]").forEach(b=>b.addEventListener("click",()=>{
-    c.ca += parseInt(b.dataset.ca,10);
-    document.getElementById("caVal").textContent = c.ca;
-    save();
-  }));
-  app.querySelectorAll("[data-chance]").forEach(b=>b.addEventListener("click",()=>{
-    c.chance = Math.max(0, c.chance + parseInt(b.dataset.chance,10));
-    document.getElementById("chanceVal").textContent = c.chance;
-    save();
-  }));
-  // Inventaire
-  app.querySelectorAll("[data-inv]").forEach(inp=>{
-    inp.addEventListener("input",()=>{ c.inventaire[parseInt(inp.dataset.inv,10)]=inp.value; updateInvCap(); save(); });
-  });
-  app.querySelectorAll("[data-delinv]").forEach(b=>b.addEventListener("click",()=>{
-    c.inventaire.splice(parseInt(b.dataset.delinv,10),1); save(); render();
-  }));
-  const add = document.getElementById("addInv");
-  if(add) add.addEventListener("click",()=>{ c.inventaire.push(""); save(); render(); });
+  const c=active();
+  app.querySelectorAll("[data-f]").forEach(inp=>inp.addEventListener("input",()=>{c[inp.dataset.f]=inp.value;save();}));
+  app.querySelectorAll("[data-f-num]").forEach(inp=>inp.addEventListener("input",()=>{c[inp.dataset.fNum]=parseInt(inp.value,10)||0;save();}));
+  app.querySelectorAll("[data-stat]").forEach(inp=>inp.addEventListener("input",()=>{c.stats[inp.dataset.stat]=parseInt(inp.value,10)||0;const m=mod(c.stats[inp.dataset.stat]);const box=inp.closest(".stat").querySelector(".mod");box.textContent=fmtMod(m);box.classList.toggle("neg",m<0);if(inp.dataset.stat==="for")updateInvCap();buildDiceStats();save();}));
+  app.querySelectorAll("[data-pv]").forEach(b=>b.addEventListener("click",()=>{c.pvCur+=parseInt(b.dataset.pv,10);document.getElementById("pvCur").textContent=c.pvCur;save();}));
+  app.querySelectorAll("[data-ca]").forEach(b=>b.addEventListener("click",()=>{c.ca+=parseInt(b.dataset.ca,10);document.getElementById("caVal").textContent=c.ca;save();}));
+  app.querySelectorAll("[data-chance]").forEach(b=>b.addEventListener("click",()=>{c.chance=Math.max(0,c.chance+parseInt(b.dataset.chance,10));document.getElementById("chanceVal").textContent=c.chance;save();}));
+  app.querySelectorAll("[data-inv]").forEach(inp=>inp.addEventListener("input",()=>{c.inventaire[parseInt(inp.dataset.inv,10)]=inp.value;updateInvCap();save();}));
+  app.querySelectorAll("[data-delinv]").forEach(b=>b.addEventListener("click",()=>{c.inventaire.splice(parseInt(b.dataset.delinv,10),1);save();render();}));
+  const add=app.querySelector("#addInv");if(add)add.addEventListener("click",()=>{c.inventaire.push("");save();render();});
 }
-function updateInvCap(){
-  const el = document.querySelector(".inv-cap");
-  if(!el) return;
-  const used = invUtilises(), cap = capacite(), over = used>cap;
-  el.innerHTML = `Emplacements : <b>${used} / ${cap}</b>`;
-  el.classList.toggle("over", over);
-}
+function updateInvCap(){const el=app.querySelector(".invbar");if(!el)return;const u=invUtilises(),cap=capacite();el.innerHTML=`Emplacements <b>${u} / ${cap}</b>`;el.classList.toggle("over",u>cap);}
 
-/* ===================== Sélecteur & menu ===================== */
-const charSelect = document.getElementById("charSelect");
-function refreshSelect(){
-  charSelect.innerHTML="";
-  store.chars.forEach(c=>{
-    const o=document.createElement("option");
-    o.value=c.id; o.textContent=c.nom||"(sans nom)";
-    if(c.id===store.activeId) o.selected=true;
-    charSelect.appendChild(o);
-  });
-}
-charSelect.addEventListener("change",()=>{ store.activeId=charSelect.value; save(); render(); });
-
-const menu = document.getElementById("menu");
-document.getElementById("menuBtn").addEventListener("click",(e)=>{ e.stopPropagation(); menu.classList.toggle("open"); });
+const charSelect=document.getElementById("charSelect");
+function refreshSelect(){charSelect.innerHTML="";store.chars.forEach(c=>{const o=document.createElement("option");o.value=c.id;o.textContent=c.nom||"(sans nom)";if(c.id===store.activeId)o.selected=true;charSelect.appendChild(o);});}
+charSelect.addEventListener("change",()=>{store.activeId=charSelect.value;save();render();});
+const menu=document.getElementById("menu");
+document.getElementById("menuBtn").addEventListener("click",e=>{e.stopPropagation();menu.classList.toggle("open");});
 document.addEventListener("click",()=>menu.classList.remove("open"));
 menu.addEventListener("click",e=>e.stopPropagation());
-
-document.getElementById("newChar").addEventListener("click",()=>{
-  const c=blankChar(); store.chars.push(c); store.activeId=c.id; save(); render(); menu.classList.remove("open"); toast("Personnage créé");
-});
-document.getElementById("renameChar").addEventListener("click",()=>{
-  const c=active(); const n=prompt("Nom du personnage :", c.nom); if(n!=null){ c.nom=n; save(); render(); } menu.classList.remove("open");
-});
-document.getElementById("deleteChar").addEventListener("click",()=>{
-  if(store.chars.length<=1){ toast("Impossible : c'est ton seul personnage"); menu.classList.remove("open"); return; }
-  if(confirm("Supprimer définitivement « "+active().nom+" » ?")){
-    store.chars = store.chars.filter(c=>c.id!==store.activeId);
-    store.activeId = store.chars[0].id; save(); render(); toast("Supprimé");
-  }
-  menu.classList.remove("open");
-});
-document.getElementById("exportChar").addEventListener("click",()=>{
-  const c=active();
-  const blob=new Blob([JSON.stringify(c,null,2)],{type:"application/json"});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement("a");
-  a.href=url; a.download=(c.nom||"perso").replace(/[^\w-]+/g,"_")+".json";
-  a.click(); URL.revokeObjectURL(url);
-  menu.classList.remove("open"); toast("Fichier exporté");
-});
+document.getElementById("newChar").addEventListener("click",()=>{const c=blankChar();store.chars.push(c);store.activeId=c.id;save();render();menu.classList.remove("open");toast("Personnage créé");});
+document.getElementById("renameChar").addEventListener("click",()=>{const c=active();const n=prompt("Nom du personnage :",c.nom);if(n!=null){c.nom=n;save();render();}menu.classList.remove("open");});
+document.getElementById("deleteChar").addEventListener("click",()=>{if(store.chars.length<=1){toast("Impossible : seul personnage");menu.classList.remove("open");return;}if(confirm("Supprimer « "+active().nom+" » ?")){store.chars=store.chars.filter(c=>c.id!==store.activeId);store.activeId=store.chars[0].id;save();render();toast("Supprimé");}menu.classList.remove("open");});
+document.getElementById("exportChar").addEventListener("click",()=>{const c=active();const blob=new Blob([JSON.stringify(c,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download=(c.nom||"perso").replace(/[^\w-]+/g,"_")+".json";a.click();URL.revokeObjectURL(url);menu.classList.remove("open");toast("Fichier exporté");});
 const importFile=document.getElementById("importFile");
-document.getElementById("importChar").addEventListener("click",()=>{ importFile.click(); menu.classList.remove("open"); });
-importFile.addEventListener("change",()=>{
-  const f=importFile.files[0]; if(!f) return;
-  const r=new FileReader();
-  r.onload=()=>{
-    try{
-      const data=JSON.parse(r.result);
-      data.id="c_"+Date.now()+"_"+Math.floor(Math.random()*9999);
-      if(!data.inventaire) data.inventaire=["","","",""];
-      if(!data.stats) data.stats={for:10,dex:10,con:10,int:10,sag:10,cha:10};
-      store.chars.push(data); store.activeId=data.id; save(); render(); toast("Personnage importé");
-    }catch(e){ toast("Fichier invalide"); }
-    importFile.value="";
-  };
-  r.readAsText(f);
-});
+document.getElementById("importChar").addEventListener("click",()=>{importFile.click();menu.classList.remove("open");});
+importFile.addEventListener("change",()=>{const f=importFile.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const data=JSON.parse(r.result);data.id="c_"+Date.now()+"_"+Math.floor(Math.random()*9999);if(!data.inventaire)data.inventaire=["","","",""];if(!data.stats)data.stats={for:10,dex:10,con:10,int:10,sag:10,cha:10};store.chars.push(data);store.activeId=data.id;save();render();toast("Personnage importé");}catch(e){toast("Fichier invalide");}importFile.value="";};r.readAsText(f);});
 
-/* ===================== Lanceur de dés ===================== */
-const diceSheet=document.getElementById("diceSheet");
-const scrim=document.getElementById("scrim");
+const diceSheet=document.getElementById("diceSheet"),scrim=document.getElementById("scrim");
 let diceMode="normal";
-
-function openDice(){ diceSheet.classList.add("open"); scrim.classList.add("open"); }
-function closeDice(){ diceSheet.classList.remove("open"); scrim.classList.remove("open"); }
+function openDice(){diceSheet.classList.add("open");scrim.classList.add("open");}
+function closeDice(){diceSheet.classList.remove("open");scrim.classList.remove("open");}
 document.getElementById("diceFab").addEventListener("click",openDice);
 document.getElementById("diceClose").addEventListener("click",closeDice);
 scrim.addEventListener("click",closeDice);
+document.querySelectorAll(".advrow .btn").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".advrow .btn").forEach(x=>x.classList.remove("active"));b.classList.add("active");diceMode=b.dataset.mode;}));
+function buildDiceStats(){const wrap=document.getElementById("diceStats");if(!wrap)return;wrap.innerHTML="";const c=active();STATS.forEach(s=>{const m=mod(c.stats[s.k]);const chip=document.createElement("button");chip.className="dchip";chip.innerHTML=`${s.label}<small>${fmtMod(m)}</small>`;chip.addEventListener("click",()=>rollD20(m,s.label));wrap.appendChild(chip);});}
+function d(n){return Math.floor(Math.random()*n)+1;}
+function rollD20(m,label){let r1=d(20),r2=d(20),used=r1,other=null;if(diceMode==="adv"){used=Math.max(r1,r2);other=Math.min(r1,r2);}else if(diceMode==="dis"){used=Math.min(r1,r2);other=Math.max(r1,r2);}const total=used+m,res=document.getElementById("diceResult");let cls=used===20?"crit":used===1?"fail":"";let modeTxt=diceMode==="adv"?" (avantage)":diceMode==="dis"?" (désavantage)":"";let detail=`d20 = ${used}${other!=null?` (autre : ${other})`:""} ${m>=0?'+':'−'} ${Math.abs(m)} — ${label}${modeTxt}`;if(used===20)detail="20 NATUREL ! · "+detail;if(used===1)detail="1 NATUREL ! · "+detail;res.innerHTML=`<div class="big ${cls}">${total}</div><div class="detail">${detail}</div>`;}
+document.querySelectorAll(".dbtn").forEach(b=>b.addEventListener("click",()=>{const sides=parseInt(b.dataset.die,10);const count=Math.min(20,Math.max(1,parseInt(document.getElementById("diceCount").value,10)||1));let rolls=[],sum=0;for(let i=0;i<count;i++){const x=d(sides);rolls.push(x);sum+=x;}const res=document.getElementById("diceResult");res.innerHTML=`<div class="big">${sum}</div><div class="detail">${count}d${sides} = [${rolls.join(", ")}]</div>`;}));
 
-document.querySelectorAll(".advrow .btn").forEach(b=>b.addEventListener("click",()=>{
-  document.querySelectorAll(".advrow .btn").forEach(x=>x.classList.remove("active"));
-  b.classList.add("active"); diceMode=b.dataset.mode;
-}));
-
-function buildDiceStats(){
-  const wrap=document.getElementById("diceStats");
-  if(!wrap) return;
-  wrap.innerHTML="";
-  const c=active();
-  STATS.forEach(s=>{
-    const m=mod(c.stats[s.k]);
-    const chip=document.createElement("button");
-    chip.className="dchip";
-    chip.innerHTML=`${s.label}<small>${fmtMod(m)}</small>`;
-    chip.addEventListener("click",()=>rollD20(m,s.label));
-    wrap.appendChild(chip);
-  });
-}
-function d(n){ return Math.floor(Math.random()*n)+1; }
-function rollD20(m,label){
-  let r1=d(20), r2=d(20), used=r1, other=null;
-  if(diceMode==="adv"){ used=Math.max(r1,r2); other=Math.min(r1,r2); }
-  else if(diceMode==="dis"){ used=Math.min(r1,r2); other=Math.max(r1,r2); }
-  const total=used+m;
-  const res=document.getElementById("diceResult");
-  let cls=""; if(used===20) cls="crit"; else if(used===1) cls="fail";
-  let modeTxt = diceMode==="adv"?" (avantage)":diceMode==="dis"?" (désavantage)":"";
-  let detail = `d20 = ${used}${other!=null?` (l'autre : ${other})`:""} ${m>=0?'+':'−'} ${Math.abs(m)} — ${label}${modeTxt}`;
-  if(used===20) detail = "20 NATUREL — réussite/critique ! · "+detail;
-  if(used===1) detail = "1 NATUREL — échec total ! · "+detail;
-  res.innerHTML=`<div class="big ${cls}">${total}</div><div class="detail">${detail}</div>`;
-}
-document.querySelectorAll(".dbtn").forEach(b=>b.addEventListener("click",()=>{
-  const sides=parseInt(b.dataset.die,10);
-  const count=Math.min(20,Math.max(1,parseInt(document.getElementById("diceCount").value,10)||1));
-  let rolls=[],sum=0; for(let i=0;i<count;i++){ const x=d(sides); rolls.push(x); sum+=x; }
-  const res=document.getElementById("diceResult");
-  res.innerHTML=`<div class="big">${sum}</div><div class="detail">${count}d${sides} = [${rolls.join(", ")}]</div>`;
-}));
-
-/* ===================== Toast ===================== */
 let toastTimer=null;
-function toast(msg){
-  const t=document.getElementById("toast");
-  t.textContent=msg; t.classList.add("show");
-  clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove("show"),2200);
-}
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2200);}
 
-/* ===================== Service worker ===================== */
-if("serviceWorker" in navigator){
-  window.addEventListener("load",()=>{ navigator.serviceWorker.register("./sw.js").catch(()=>{}); });
-}
-
+if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("./sw.js").catch(()=>{});});}
 render();
 </script>
 </body>
