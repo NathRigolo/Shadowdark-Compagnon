@@ -149,7 +149,6 @@
   <button class="tab active" data-tab="jeu"><span class="ic">&#9876;&#65039;</span>Jeu</button>
   <button class="tab" data-tab="identite"><span class="ic">&#128220;</span>Identité</button>
   <button class="tab" data-tab="sac"><span class="ic">&#127890;</span>Sac</button>
-  <button class="tab" data-tab="grimoire"><span class="ic">&#10022;</span>Grimoire</button>
 </nav>
 
 <div class="menu" id="menu">
@@ -219,13 +218,13 @@ function render(){
       ${panel("Caractéristiques",`<div class="stats" id="statsGrid"></div>`,"mod. auto")}
       ${panel("Vitalité",vitaliteHtml(c))}
       <div class="span-all">${panel("Attaques",`<textarea data-f="attaques" placeholder="Épée longue +1 (1d8)&#10;Arc court (loin) +2 (1d6)">${esc(c.attaques)}</textarea>`)}</div>
+      <div class="span-all">${panel("Talents / Sorts",`<textarea data-f="talents" placeholder="Talents de classe, sorts connus, capacités…" style="min-height:140px">${esc(c.talents)}</textarea>`)}</div>
     </div></div>
-    <div class="tabpane" data-pane="identite"><div class="pane-grid">${panel("Identité",identiteHtml(c))}</div></div>
-    <div class="tabpane" data-pane="sac"><div class="pane-grid">${panel("Inventaire",invHtml(c), invUtilises()>capacite()?'<span class="warn">surcharge</span>':'')}</div></div>
-    <div class="tabpane" data-pane="grimoire"><div class="pane-grid">
-      ${panel("Talents / Sorts",`<textarea data-f="talents" placeholder="Talents de classe, sorts connus, capacités…" style="min-height:160px">${esc(c.talents)}</textarea>`)}
-      ${panel("Notes",`<textarea data-f="notes" placeholder="Objectifs perso, contacts, rumeurs, à faire…" style="min-height:160px">${esc(c.notes)}</textarea>`)}
-    </div></div>`;
+    <div class="tabpane" data-pane="identite"><div class="pane-grid">
+      ${panel("Identité",identiteHtml(c))}
+      ${panel("Notes",`<textarea data-f="notes" placeholder="Objectifs perso, contacts, rumeurs, à faire…" style="min-height:200px">${esc(c.notes)}</textarea>`)}
+    </div></div>
+    <div class="tabpane" data-pane="sac"><div class="pane-grid">${panel("Inventaire",invHtml(c), invUtilises()>capacite()?'<span class="warn">surcharge</span>':'')}</div></div>`;
   const grid=app.querySelector("#statsGrid");
   STATS.forEach(s=>{const m=mod(c.stats[s.k]);const el=document.createElement("div");el.className="stat";el.innerHTML=`<div class="name">${s.label}</div><div class="mod ${m<0?'neg':''}">${fmtMod(m)}</div><input type="number" inputmode="numeric" data-stat="${s.k}" value="${c.stats[s.k]}" min="1" max="20">`;grid.appendChild(el);});
   const invList=app.querySelector("#invList");
