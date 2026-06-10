@@ -164,6 +164,23 @@
   @keyframes popCrit{0%{transform:scale(.3) rotate(-8deg);opacity:0}50%{transform:scale(1.3) rotate(4deg)}75%{transform:scale(.95) rotate(-2deg)}100%{transform:scale(1) rotate(0);opacity:1}}
   .result.fail .big.pop{animation:popFail .5s ease}
   @keyframes popFail{0%{transform:translateY(-10px);opacity:0}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}100%{transform:translateX(0);opacity:1}}
+  /* dé qui tombe et roule */
+  .result .die{position:absolute;left:50%;top:50%;width:62px;height:62px;margin:-31px 0 0 -31px;border-radius:14px;background:linear-gradient(150deg,#2a313d,#161a21);border:1px solid var(--line-2);box-shadow:inset 0 2px 4px #ffffff14, inset 0 -3px 6px #00000055, 0 6px 14px #0008;display:flex;align-items:center;justify-content:center;font-family:"Iowan Old Style",Georgia,serif;font-size:30px;font-weight:700;color:var(--accent-2);z-index:3}
+  .result .die.rolling{animation:dieRoll .72s cubic-bezier(.3,.7,.4,1) forwards}
+  @keyframes dieRoll{
+    0%{transform:translate(-120px,-150px) rotate(-220deg) scale(.7);opacity:0}
+    12%{opacity:1}
+    40%{transform:translate(40px,6px) rotate(160deg) scale(1.05)}
+    55%{transform:translate(40px,-28px) rotate(250deg) scale(1)}
+    72%{transform:translate(-18px,8px) rotate(330deg) scale(1.02)}
+    85%{transform:translate(-18px,-12px) rotate(355deg)}
+    100%{transform:translate(0,0) rotate(360deg) scale(1)}
+  }
+  .result .die.settle{animation:dieSettle .25s ease forwards}
+  @keyframes dieSettle{0%{transform:scale(1)}40%{transform:scale(1.18)}100%{transform:scale(1)}}
+  .result .die.crit{color:var(--gold);border-color:var(--gold);box-shadow:inset 0 2px 4px #ffffff22,0 0 18px #f0c34e55,0 6px 14px #0008}
+  .result .die.fail{color:var(--blood);border-color:var(--blood);box-shadow:inset 0 2px 4px #ffffff10,0 0 18px #bd4a4555,0 6px 14px #0008}
+  .result.rolling .big,.result.rolling .crit-tag,.result.rolling .detail{opacity:0}
   /* étincelles crit */
   .spark{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--gold);pointer-events:none;opacity:0}
   .result.crit .spark{animation:spark .7s ease-out forwards}
@@ -414,16 +431,40 @@ function rollD20(m,label,openSheet){
   const crit=used===20, fail=used===1;
   const modeTxt=diceMode==="adv"?" (av.)":diceMode==="dis"?" (dés.)":"";
   let detail=`d20 = ${used}${other!=null?` (autre : ${other})`:""} ${m>=0?'+':'−'} ${Math.abs(m)} — ${label}${modeTxt}`;
-  showResult(total, crit, fail, detail, crit?"Réussite critique !":fail?"Échec critique !":"");
+  showResult(total, crit, fail, detail, crit?"Réussite critique !":fail?"Échec critique !":"", 20);
   pushHistory(label+modeTxt, total, crit, fail);
   vibrate(crit?[40,50,60]:fail?[120]:18);
   if(openSheet){openDice();}
 }
-function showResult(total,crit,fail,detail,tag){
+let rollAnimTimers=[];
+function showResult(total,crit,fail,detail,tag,faceMax){
   const res=document.getElementById("diceResult");
-  res.className="result"+(crit?" crit":fail?" fail":"");
-  res.innerHTML=`${tag?`<div class="crit-tag">${tag}</div>`:""}<div class="big pop">${total}</div><div class="detail">${detail}</div>`;
-  if(crit){spawnSparks(res);}
+  // nettoie une éventuelle animation en cours
+  rollAnimTimers.forEach(t=>clearTimeout(t));rollAnimTimers=[];
+  res.className="result rolling"+(crit?" crit":fail?" fail":"");
+  res.innerHTML=`${tag?`<div class="crit-tag">${tag}</div>`:""}<div class="big">${total}</div><div class="detail">${detail}</div>`;
+  // le dé
+  const die=document.createElement("div");
+  die.className="die rolling"+(crit?" crit":fail?" fail":"");
+  const fmax=faceMax||20;
+  die.textContent=Math.floor(Math.random()*fmax)+1;
+  res.appendChild(die);
+  // faire défiler des faces pendant la chute
+  let ticks=0;
+  const iv=setInterval(()=>{die.textContent=Math.floor(Math.random()*fmax)+1;ticks++;},55);
+  rollAnimTimers.push(setTimeout(()=>{
+    clearInterval(iv);
+    die.textContent=total>fmax?fmax:total; // affiche une face plausible
+    die.classList.remove("rolling");die.classList.add("settle");
+  },680));
+  // révéler le vrai total
+  rollAnimTimers.push(setTimeout(()=>{
+    res.classList.remove("rolling");
+    die.remove();
+    const big=res.querySelector(".big");
+    if(big){big.classList.add("pop");void big.offsetWidth;}
+    if(crit){spawnSparks(res);}
+  },760));
 }
 function spawnSparks(container){
   for(let i=0;i<12;i++){
@@ -454,7 +495,7 @@ document.querySelectorAll(".dbtn").forEach(b=>b.addEventListener("click",()=>{
   const sides=parseInt(b.dataset.die,10);
   const count=Math.min(20,Math.max(1,parseInt(document.getElementById("diceCount").value,10)||1));
   let rolls=[],sum=0;for(let i=0;i<count;i++){const x=d(sides);rolls.push(x);sum+=x;}
-  showResult(sum,false,false,`${count}d${sides} = [${rolls.join(", ")}]`,"");
+  showResult(sum,false,false,`${count}d${sides} = [${rolls.join(", ")}]`,"",sides);
   pushHistory(`${count}d${sides}`,sum,false,false);
   vibrate(18);
 }));
