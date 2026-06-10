@@ -3,8 +3,8 @@
    - HTML (navigation)  -> "network-first" : on tente le réseau, on tombe sur le cache hors-ligne.
    - autres fichiers     -> "cache-first" puis mise à jour en arrière-plan.
    IMPORTANT : à chaque déploiement, change le numéro de version ci-dessous
-   (ex : diablerie-v2, v3...) pour forcer la mise à jour chez tout le monde. */
-const VERSION = "diablerie-v2";
+   (ex : diablerie-v3, v3...) pour forcer la mise à jour chez tout le monde. */
+const VERSION = "diablerie-v3";
 const ASSETS = ["./", "./index.html", "./manifest.webmanifest"];
 
 self.addEventListener("install", (e) => {
